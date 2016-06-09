@@ -15,6 +15,7 @@
 		0371F8001D0922A800E3E815 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0371F7FE1D0922A800E3E815 /* LaunchScreen.storyboard */; };
 		0371F80A1D09233100E3E815 /* QuadTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0371F8081D09233100E3E815 /* QuadTree.cpp */; };
 		03E4493F1D0939CE009F5493 /* QuadVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 03E4493E1D0939CE009F5493 /* QuadVC.mm */; };
+		03E449431D094A43009F5493 /* QueryVisualVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 03E449421D094A43009F5493 /* QueryVisualVC.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,8 @@
 		0371F8091D09233100E3E815 /* QuadTree.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = QuadTree.hpp; sourceTree = "<group>"; };
 		03E4493D1D0939CE009F5493 /* QuadVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuadVC.h; path = ../QuadVC.h; sourceTree = "<group>"; };
 		03E4493E1D0939CE009F5493 /* QuadVC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = QuadVC.mm; path = ../QuadVC.mm; sourceTree = "<group>"; };
+		03E449411D094A43009F5493 /* QueryVisualVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QueryVisualVC.h; path = ../QueryVisualVC.h; sourceTree = "<group>"; };
+		03E449421D094A43009F5493 /* QueryVisualVC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = QueryVisualVC.mm; path = ../QueryVisualVC.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +72,8 @@
 				03E4493D1D0939CE009F5493 /* QuadVC.h */,
 				03E4493E1D0939CE009F5493 /* QuadVC.mm */,
 				0371F7F41D0922A800E3E815 /* AppDelegate.m */,
+				03E449411D094A43009F5493 /* QueryVisualVC.h */,
+				03E449421D094A43009F5493 /* QueryVisualVC.mm */,
 				0371F7F61D0922A800E3E815 /* ViewController.h */,
 				0371F7F71D0922A800E3E815 /* ViewController.m */,
 				0371F7F91D0922A800E3E815 /* Main.storyboard */,
@@ -170,6 +175,7 @@
 				0371F80A1D09233100E3E815 /* QuadTree.cpp in Sources */,
 				0371F7F81D0922A800E3E815 /* ViewController.m in Sources */,
 				0371F7F51D0922A800E3E815 /* AppDelegate.m in Sources */,
+				03E449431D094A43009F5493 /* QueryVisualVC.mm in Sources */,
 				03E4493F1D0939CE009F5493 /* QuadVC.mm in Sources */,
 				0371F7F21D0922A800E3E815 /* main.m in Sources */,
 			);

@@ -33,6 +33,10 @@ namespace Algo {
         
         // I am keeping it like pointers because I was using a c99 compiler on last version of xcode and was too laz e to change
         // someone can change to & which would be nicer :D
+        void printSelf(){
+            // riiskeeeee
+            printf("Point x(%f) y(%f) \n",x,y);
+        }
         static bool equal(const struct QuadPoint * pointOne, const  struct QuadPoint * pointTwo, float margin){
             
             float xRes = fabs(pointOne->x - pointTwo->x);
@@ -68,7 +72,7 @@ namespace Algo {
                 return other;
             }else if(Rect::rectIsInside(other, *this)){
                 // the other totally contains me return this
-                return Rect(0,0,0,0);
+                return *this;
             }else{
                 Precision xStart = this->upperLeft.x  > other.upperLeft.x ? this->upperLeft.x : other.upperLeft.x;
                 Precision yStart = this->upperLeft.y > other.upperLeft.y ? this->upperLeft.y : other.upperLeft.y;
@@ -85,7 +89,7 @@ namespace Algo {
                 
             }
             
-            return Rect(0,0,0,0);
+            return Rect(SENTINEL,SENTINEL,SENTINEL,SENTINEL);
         }
         static bool contains(const struct Rect & rec,const struct QuadPoint<Precision> &  p){
             if(rec.upperLeft.x > p.x || rec.upperLeft.x + rec.width < p.x){
@@ -99,9 +103,9 @@ namespace Algo {
         
         // we are testing if the second recuare is insidethe first
         static bool rectIsInside(const struct Rect & rec,const struct Rect &  p){
-            if(!(rec.upperLeft.y < p.upperLeft.y && rec.upperLeft.y + rec.height > p.upperLeft.y+ p.height)){
+            if(!(rec.upperLeft.y <= p.upperLeft.y && rec.upperLeft.y + rec.height >= p.upperLeft.y+ p.height)){
                 return false;
-            }else if(!(rec.upperLeft.x < p.upperLeft.x && rec.upperLeft.x + rec.width > p.upperLeft.x+ p.width)){
+            }else if(!(rec.upperLeft.x <= p.upperLeft.x && rec.upperLeft.x + rec.width >= p.upperLeft.x+ p.width)){
                 return false;
             }
             
@@ -248,17 +252,17 @@ namespace Algo {
                     Rect sw = q->children[2]->myRect.getIntersection(currentRange);
                     Rect se = q->children[3]->myRect.getIntersection(currentRange);
                     
-                    if(nw.width != 0.0){
+                    if(nw.width != SENTINEL){
                         query(q->children[0],nw,pointList);
                     }
-                    if(ne.width != 0.0){
+                    if(ne.width != SENTINEL){
                         query(q->children[1],ne,pointList);
                     }
-                    if(sw.width != 0.0){
+                    if(sw.width != SENTINEL){
                         query(q->children[2],sw,pointList);
                     }
-                    if(se.width != 0.0){
-                        query(q->children[3],sw,pointList);
+                    if(se.width != SENTINEL){
+                        query(q->children[3],se,pointList);
                     }
                 }
                 // else return were done you cant query with children
@@ -274,8 +278,54 @@ namespace Algo {
                 QuadQuery::addAll(node->children[2],pointList);
                 QuadQuery::addAll(node->children[3],pointList);
             }else{
+                if(node->data.x != SENTINEL && node->data.x != PARENT)
                 pointList.push_back(node->data);
                 // it was null add it
+            }
+        }
+        
+        
+        static void queryWithKeptIntersections(QuadTree * q,Rect currentRange, std::vector<QuadPoint<Precision> > & pointList,std::vector<Rect > & subQueries){
+            if(Rect::rectIsInside(currentRange, q->myRect)){
+                // add all
+                addAll(q,pointList);
+            }else{
+                // calculate intersection of every quadrant with current children if they are not null and if the intersection is valid
+                // query again brah big money big money
+                if(q->children[0] != nullptr){
+                    // calculate intersection of all
+                    
+                    Rect nw = q->children[0]->myRect.getIntersection(currentRange);
+                    Rect ne = q->children[1]->myRect.getIntersection(currentRange);
+                    Rect sw = q->children[2]->myRect.getIntersection(currentRange);
+                    Rect se = q->children[3]->myRect.getIntersection(currentRange);
+                    
+                    /* These two should be equivalent, intersection should matter who comes first!
+                    Rect nw = currentRange.getIntersection(q->children[0]->myRect);
+                    Rect ne = currentRange.getIntersection(q->children[1]->myRect);
+                    Rect sw = currentRange.getIntersection(q->children[2]->myRect);
+                    Rect se = currentRange.getIntersection(q->children[3]->myRect);
+                     */
+                    if(nw.width != SENTINEL){
+                        subQueries.push_back(nw);
+                        query(q->children[0],nw,pointList);
+                    }
+                    if(ne.width != SENTINEL){
+                        subQueries.push_back(ne);
+                        query(q->children[1],ne,pointList);
+                    }
+                    if(sw.width != SENTINEL){
+                        subQueries.push_back(sw);
+                        query(q->children[2],sw,pointList);
+                    }
+                    if(se.width != SENTINEL){
+                        subQueries.push_back(nw);
+                        query(q->children[3],se,pointList);
+                    }
+                }
+                // else return were done you cant query with children
+                
+                // DO TESTS HERE LIKE MAYBE THE SQUARE CONTAINS THE RANGE SO MAKE IT SMALLER?!!?!
             }
         }
     private:

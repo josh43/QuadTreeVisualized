@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "QuadTree.hpp"
 @interface QuadVC : UIViewController
-
+-(void) drawQuadTree:(Algo::QuadTree *) tree;
+-(UIView *) getQuadTreeRect:(Algo::Rect) s;
+-(UIView *) getRectAtLocation:(int) x
+                      withWhy:(int)y
+                     andWidth:(int) width
+                    andHeight:(int)height
+                     andColor:(UIColor *) color;
+-(UIView *) getPointAtLocation:(int) x
+                       withWhy:(int)y
+                      andColor:(UIColor *) color;
 @end

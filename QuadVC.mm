@@ -14,10 +14,10 @@
 //
 //  Created by joshua on 6/8/16.
 //  Copyright © 2016 joshua. All rights reserved.
-//
+//  This is to show you a basic insertion visualization of the quadtree
+//  edit testQuadTree and insert more/different points to check out the effects
 
 
-#include "QuadTree.hpp"
 @interface QuadVC ()
 
 @end
@@ -30,13 +30,14 @@
     [self.navigationController setNavigationBarHidden:YES];
     
     
-    // WEEE TOOK WAY LESS TIME THEN PREVIOUSLY THOUGH
+    // WEEE TOOK WAY LESS TIME THEN PREVIOUSLY THOUGHT
     [self testQuadTree];
     //[self doTest];
 }
 
 
 -(void) testQuadTree{
+    // it can handle rects as well aka 400,760
     struct Algo::Rect sq = {0,0,400,400};
     
     Algo::QuadTree * head = new Algo::QuadTree(sq);
