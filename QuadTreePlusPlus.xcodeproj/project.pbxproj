@@ -13,6 +13,8 @@
 		0371F7FB1D0922A800E3E815 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0371F7F91D0922A800E3E815 /* Main.storyboard */; };
 		0371F7FD1D0922A800E3E815 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0371F7FC1D0922A800E3E815 /* Assets.xcassets */; };
 		0371F8001D0922A800E3E815 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0371F7FE1D0922A800E3E815 /* LaunchScreen.storyboard */; };
+		0371F80A1D09233100E3E815 /* QuadTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0371F8081D09233100E3E815 /* QuadTree.cpp */; };
+		03E4493F1D0939CE009F5493 /* QuadVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 03E4493E1D0939CE009F5493 /* QuadVC.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,10 @@
 		0371F7FC1D0922A800E3E815 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0371F7FF1D0922A800E3E815 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0371F8011D0922A800E3E815 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0371F8081D09233100E3E815 /* QuadTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QuadTree.cpp; sourceTree = "<group>"; };
+		0371F8091D09233100E3E815 /* QuadTree.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = QuadTree.hpp; sourceTree = "<group>"; };
+		03E4493D1D0939CE009F5493 /* QuadVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuadVC.h; path = ../QuadVC.h; sourceTree = "<group>"; };
+		03E4493E1D0939CE009F5493 /* QuadVC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = QuadVC.mm; path = ../QuadVC.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +64,10 @@
 		0371F7EF1D0922A800E3E815 /* QuadTreePlusPlus */ = {
 			isa = PBXGroup;
 			children = (
+				0371F8071D09232200E3E815 /* Quad */,
 				0371F7F31D0922A800E3E815 /* AppDelegate.h */,
+				03E4493D1D0939CE009F5493 /* QuadVC.h */,
+				03E4493E1D0939CE009F5493 /* QuadVC.mm */,
 				0371F7F41D0922A800E3E815 /* AppDelegate.m */,
 				0371F7F61D0922A800E3E815 /* ViewController.h */,
 				0371F7F71D0922A800E3E815 /* ViewController.m */,
@@ -77,6 +86,15 @@
 				0371F7F11D0922A800E3E815 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0371F8071D09232200E3E815 /* Quad */ = {
+			isa = PBXGroup;
+			children = (
+				0371F8081D09233100E3E815 /* QuadTree.cpp */,
+				0371F8091D09233100E3E815 /* QuadTree.hpp */,
+			);
+			name = Quad;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,8 +167,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0371F80A1D09233100E3E815 /* QuadTree.cpp in Sources */,
 				0371F7F81D0922A800E3E815 /* ViewController.m in Sources */,
 				0371F7F51D0922A800E3E815 /* AppDelegate.m in Sources */,
+				03E4493F1D0939CE009F5493 /* QuadVC.mm in Sources */,
 				0371F7F21D0922A800E3E815 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,6 +283,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LIBRARY = "libstdc++";
 				INFOPLIST_FILE = QuadTreePlusPlus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.JRMCorp.QuadTreePlusPlus;
@@ -274,6 +296,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LIBRARY = "libstdc++";
 				INFOPLIST_FILE = QuadTreePlusPlus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.JRMCorp.QuadTreePlusPlus;
@@ -300,6 +324,7 @@
 				0371F8061D0922A800E3E815 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

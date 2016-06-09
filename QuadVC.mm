@@ -21,7 +21,6 @@
 @interface QuadVC ()
 
 @end
-QuadTree * quadTree;
 
 @implementation QuadVC
 
@@ -38,16 +37,25 @@ QuadTree * quadTree;
 
 
 -(void) testQuadTree{
-    struct Square sq = {0,0,400};
-    struct QuadTree * head = createQuadNode(sq);
-    struct QuadPoint first = {150,150}; // make it right down the middle
+    struct Algo::Rect sq = {0,0,400,400};
+    
+    Algo::QuadTree * head = new Algo::QuadTree(sq);
+    
+    struct Algo::QuadPoint<Precision> first = {200,200}; // make it right down the middle
+    
     // so when it splits it splits the most
-    struct QuadPoint second = {55,39};
-    struct QuadPoint third = {180,170};
-    struct QuadPoint outOf = {480,370};
-    struct QuadPoint fith = {200,200};
-    struct QuadPoint six = {190,188};
-    insert(head,first);
+    struct Algo::QuadPoint<Precision> second = {55,39};
+    struct Algo::QuadPoint<Precision> third = {180,170};
+    struct Algo::QuadPoint<Precision> outOf = {480,370};
+    struct Algo::QuadPoint<Precision> fith = {200,200};
+    struct Algo::QuadPoint<Precision> six = {190,188};
+    head->insert(first);
+    head->insert(second);
+    head->insert(third);
+    head->insert(outOf);
+    head->insert(fith);
+    head->insert(six);
+    /*insert(head,first);
     insert(head,second);
     insert(head,second);
     
@@ -55,18 +63,20 @@ QuadTree * quadTree;
     insert(head,outOf);
     insert(head,fith);
     insert(head,six);
+    */
     
     [self drawQuadTree:head];
     
 }
+
 int numMainRects = 0;
--(void) drawQuadTree:(struct QuadTree *) tree{
+-(void) drawQuadTree:(Algo::QuadTree *) tree{
     
     UIColor * blue = [UIColor colorWithRed:0 green:0 blue:1 alpha:1];
     UIColor * red = [UIColor colorWithRed:1 green:0 blue:0 alpha:1];
     
     printf("Num main rects  drawn :%d \n",numMainRects++);
-    UIView * toAdd = [self getQuadTreeRect:tree->mySquare];
+    UIView * toAdd = [self getQuadTreeRect:tree->myRect];
     [self.view addSubview:toAdd];
     
     for(int i = 0; i < 4; i ++){
@@ -77,7 +87,7 @@ int numMainRects = 0;
             // draw it
         }else{
             // draw the point it has
-            struct QuadPoint qPoint = tree->data;
+            Algo::QuadPoint<Precision> qPoint = tree->data;
             if(qPoint.x != SENTINEL){
                 UIView * point = [self getPointAtLocation:qPoint.x withWhy:qPoint.y andColor:red];
                 [self.view addSubview:point];
@@ -88,12 +98,14 @@ int numMainRects = 0;
     
     
 }
+/*
 -(void)doTest{
     
     int startX = 30; int startY = 30;
     int width = 300;
+    int height = 300;
     struct Square s = {startX,startY,width};
-    UIView * blueRect = [self getRectAtLocation:startX withWhy:startY andWidth:width  andColor:[UIColor colorWithRed:.1 green:.1 blue:1 alpha:1]];
+    UIView * blueRect = [self getRectAtLocation:startX withWhy:startY andWidth:width  andHeight:height andColor:[UIColor colorWithRed:.1 green:.1 blue:1 alpha:1]];
     
     
     [self.view addSubview:blueRect];
@@ -120,13 +132,15 @@ int numMainRects = 0;
     
     
 }
+ */
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(UIView *) getQuadTreeRect:(struct Square) s{
+
+-(UIView *) getQuadTreeRect:(Algo::Rect) s{
     // blue c olor
-    UIView  * v1 = [self getRectAtLocation:s.upperLeft.x withWhy:s.upperLeft.y andWidth:s.width andColor:[UIColor colorWithRed:.1 green:.1 blue:1 alpha:1]];
+    UIView  * v1 = [self getRectAtLocation:s.upperLeft.x withWhy:s.upperLeft.y andWidth:s.width andHeight:s.height andColor:[UIColor colorWithRed:.1 green:.1 blue:1 alpha:1]];
     
     v1.layer.borderColor = [UIColor blackColor].CGColor;
     v1.layer.borderWidth = 2.0f;
@@ -136,10 +150,12 @@ int numMainRects = 0;
 -(UIView *) getRectAtLocation:(int) x
                       withWhy:(int)y
                      andWidth:(int) width
+                    andHeight:(int)height
                      andColor:(UIColor *) color{
     
     
-    UIView* v1 = [[UIView alloc] initWithFrame:CGRectMake(x, y,width,width)];
+    
+    UIView* v1 = [[UIView alloc] initWithFrame:CGRectMake(x, y,width,height)];
     v1.backgroundColor = color;
     
     
