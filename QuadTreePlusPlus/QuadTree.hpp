@@ -101,7 +101,7 @@ namespace Algo {
             return true;
         }
         
-        // we are testing if the second recuare is insidethe first
+        // we are testing if the second rectangle is insidethe first
         static bool rectIsInside(const struct Rect & rec,const struct Rect &  p){
             if(!(rec.upperLeft.y <= p.upperLeft.y && rec.upperLeft.y + rec.height >= p.upperLeft.y+ p.height)){
                 return false;
@@ -120,8 +120,6 @@ namespace Algo {
     
     
     
-    // I wish
-    // Why c? beause c++ compiling can be a beesh with ios
     class QuadTree{
     public:
         friend class QuadQuery;
@@ -178,8 +176,7 @@ namespace Algo {
             }
             
             bool res = false;
-            // you could make a first check to see if the first child is  null and skip it
-            // if it is and just go to creating, benefits early on, lags later on
+            
             for(int i =0; i < 4; i ++){
                 if(head->children[i] != NULL){
                     // try and insert into as many as you can
@@ -244,7 +241,7 @@ namespace Algo {
                 addAll(q,pointList);
             }else{
                 // calculate intersection of every quadrant with current children if they are not null and if the intersection is valid
-                // query again brah big money big money
+                // query again  big money big money
                 if(q->children[0] != nullptr){
                     // calculate intersection of all
                     Rect nw = q->children[0]->myRect.getIntersection(currentRange);
@@ -267,7 +264,6 @@ namespace Algo {
                 }
                 // else return were done you cant query with children
                 
-                // DO TESTS HERE LIKE MAYBE THE SQUARE CONTAINS THE RANGE SO MAKE IT SMALLER?!!?!
             }
         }
         static void addAll(QuadTree * node,std::vector<QuadPoint<Precision> > & pointList){
@@ -325,7 +321,6 @@ namespace Algo {
                 }
                 // else return were done you cant query with children
                 
-                // DO TESTS HERE LIKE MAYBE THE SQUARE CONTAINS THE RANGE SO MAKE IT SMALLER?!!?!
             }
         }
     private:
