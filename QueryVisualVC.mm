@@ -49,15 +49,7 @@
     head->insert(eight);
     head->insert(nine);
     head->insert(ten);
-    /*insert(head,first);
-     insert(head,second);
-     insert(head,second);
-     
-     insert(head,third);
-     insert(head,outOf);
-     insert(head,fith);
-     insert(head,six);
-     */
+ 
     typedef Algo::QuadPoint<Precision> QPoint;
     std::vector<QPoint> pointList;
     std::vector<Algo::Rect> subQueries;

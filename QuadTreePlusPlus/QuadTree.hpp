@@ -118,7 +118,16 @@ namespace Algo {
     };
     
     
-    
+    /* TODO:
+     Make a removeRange(), basically just rangeQuery but instead set points to null!
+     Also as bonus you can potentially collapse quad nodes and free memory making the tree smaller
+     
+     Can make a max height, upon reaching it you can have a vector that just holds a bunch of points
+     Ex you only want the height to be max of 10 because that is good enough precision, once reached thier
+     stop splitting rather just create a node that has a list of points
+     
+     Make a class that Wraps this and provides basic statistics, aka  numberNodes,height,total heap memory, total   stack memory, avg insertTime, avg queryTime,4
+     */
     
     class QuadTree{
     public:
@@ -153,6 +162,7 @@ namespace Algo {
         void insert(QuadPoint<Precision> point){
             this->insert(this,point);
         }
+        
         
     protected:
         bool insert(QuadTree * head,  QuadPoint<Precision> point){
