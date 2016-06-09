@@ -56,6 +56,7 @@
     head->insert(outOf);
     head->insert(fith);
     head->insert(six);
+    
     /*insert(head,first);
     insert(head,second);
     insert(head,second);

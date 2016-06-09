@@ -162,9 +162,44 @@ namespace Algo {
         void insert(QuadPoint<Precision> point){
             this->insert(this,point);
         }
-        
+        void remove(QuadPoint<Precision> point){
+            this->remove(this,point);
+            
+        }
         
     protected:
+        bool remove(QuadTree * head, QuadPoint<Precision> point){
+            if(!Rect::contains(head->myRect, point)){
+                return false;
+            }
+            // else proceed
+            
+            if(point.x == SENTINEL){
+                printf("Error you can't set the x to the sentinel :|||");
+                exit(0);
+                //throw std::invalid_argument("NOO X IS SENTINEL FAIL");
+            }
+            if(QuadPoint<Precision>::equal(&head->data,&point,MARGIN)){
+                head->data.x = SENTINEL;
+                head->data.y = SENTINEL;
+                return true; // dont do anythng
+            }
+            if(head->data.x == SENTINEL && head->data.y == SENTINEL){
+                return false;
+            }
+            
+            bool res = false;
+            
+            for(int i =0; i < 4; i ++){
+                if(head->children[i] != NULL){
+                    // try and insert into as many as you can
+                    res |= remove(head->children[i],point);
+                }
+            }
+            
+            return res;
+            
+        }
         bool insert(QuadTree * head,  QuadPoint<Precision> point){
             
             if(!Rect::contains(head->myRect, point)){

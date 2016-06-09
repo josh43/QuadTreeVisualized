@@ -50,6 +50,19 @@
     head->insert(nine);
     head->insert(ten);
  
+    /*
+    head->remove(first);
+    head->remove(second);
+    head->remove(third);
+    head->remove(outOf);
+    head->remove(fith);
+    head->remove(six);
+    head->remove(sev);
+    head->remove(eight);
+    head->remove(nine);
+    head->remove(ten);
+   */
+
     typedef Algo::QuadPoint<Precision> QPoint;
     std::vector<QPoint> pointList;
     std::vector<Algo::Rect> subQueries;
