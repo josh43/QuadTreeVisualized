@@ -306,6 +306,15 @@ namespace Algo {
                     if(se.width != SENTINEL){
                         query(q->children[3],se,pointList);
                     }
+                }else{
+                    
+                    //check if the current range covers the point!
+                    // because we should be at a child!
+                    if(q->data.x != SENTINEL && q->data.x != PARENT){
+                        if(Rect::contains(currentRange, q->data)){
+                            pointList.push_back(q->data);
+                        }
+                    }
                 }
                 // else return were done you cant query with children
                 
